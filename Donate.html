@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.imgur.com/JQVkXNQ.png" type="image/png">
+
+    <title>Donate-Recycleit!</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            padding: 6rem 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: url('https://www.transparenttextures.com/patterns/green-flower.png');
+            background-size: cover;
+            z-index: -1;
+        }
+
+        /* Start Now Button */
+        .start-now {
+            background-color: #333;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .start-now:hover {
+            background-color: #666;
+        }
+
+        /* Why Donate Section */
+        .why-donate {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .why-donate h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-donate p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Cards Section */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            color: #4CAF50;
+            margin-top: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .why-donate h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .why-donate h2 {
+                font-size: 1.5rem;
+            }
+
+            .why-donate p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Donate Recycled Items
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Give a New Life to Your Recycled Items</h1>
+        <p>Every item you donate helps create a cleaner and greener planet. Join the cause and start donating today!</p>
+        <!-- Start Now Button -->
+        <a href="Donate1.html" class="start-now">Start Now</a>
+    </div>
+
+    <!-- Why Donate Section -->
+    <div class="why-donate" id="donate">
+        <h2>Why Donate?</h2>
+        <p>Donating recycled items helps reduce waste, conserves energy, and gives a second life to valuable resources. Every contribution supports sustainability and a brighter future for our environment.</p>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="cards">
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIG2._TtyPxc2B0YwEJheAs03?pid=ImgGn" alt="Recycled Plastic">
+            <h3>Plastics</h3>
+            <p>Your plastic waste can be reused to create new products, reducing the environmental footprint.</p>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIG2.jd7Ok1zYbo4CCZv4qSla?pid=ImgGn" alt="Recycled Electronics">
+            <h3>Electronics</h3>
+            <p>Old electronics can be refurbished or recycled to avoid harmful waste in landfills.</p>
+        </div>
+        <div class="card">
+            <img src="https://th.bing.com/th/id/OIG1.tlSOQ4Fu2vrM0PwGiWDL?w=1024&h=1024&rs=1&pid" alt="Recycled Paper">
+            <h3>Paper</h3>
+            <p>Donating paper reduces the need for deforestation and supports sustainable manufacturing.</p>
+        </div>
+    </div>
+
+    <footer>
+        Together, we can make the world greener. Donate today!
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome-Recycle it!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+        <link rel="icon" href="https://i.imgur.com/JQVkXNQ.png" type="image/png">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+            :root {
+            --scrollcolor: #fff;
+            --scrollbackground: #141e27;
+            }
+            * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            }
+            html, body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            }
+            body {
+  background: linear-gradient(135deg, #003300 0%, #004d00 50%, #00bfff 100%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); /* Importing Roboto font */
+        .header {
+  position: relative;
+  text-align: center;
+  background: -webkit-linear-gradient(to right, #414345, #232526);
+  background: linear-gradient(to right, #414345, #232526);
+  color: white;
+}
+
+ nav {
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px); /* For better cross-browser support */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    z-index: 999; /* Ensure the nav bar stays on top */
+    display: flex;
+    position: fixed;
+    top: 20px; /* This moves the nav down from the top */
+    width:95%;
+    border-radius: 50px; /* This adds curves to the navigation bar */
+}
+
+
+.logo {
+    padding: 1vh 1vw;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 88vw;
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /* Updated font to Roboto */
+    font-size: 1.2rem; /* Font size for better readability */
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    color: #131418; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition for color */
+    font-weight: 500; /* Adding some weight for a stronger appearance */
+    text-decoration: none; /* Removing underline */
+}
+
+/* Hover State */
+.nav-links li a:hover {
+    color: #1524ff; /* Deep indigo color */
+}
+
+
+.nav-links li {
+    position: relative;
+}
+
+
+
+/* Hamburger icon styles for small screens */
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: #131418; /* Black color for consistency */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-links {
+        font-size: 1.5rem; /* Larger font size for smaller screens */
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #f2f5f7; /* Light background for contrast */
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        top: 0;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+    }
+
+    li.fade {
+        opacity: 1;
+    }
+}
+
+/* Hamburger icon transformation on click */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    transition: all 0.7s ease;
+    width: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent; /* No background for dropdown button */
+  color: #fff;
+  border: none; /* Remove border */cursor: pointer;
+  border-radius: 25px; /* Curved corners for button */
+  cursor: pointer;
+  padding: 0; /* Remove padding /font-weight: normal; / Remove bold font */
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Added bold font for visibility */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: transparent; /* No hover background /border-color: transparent; / No hover border */
+    border-color: #666; /* Darker border on hover */
+}
+
+.arrow {
+  margin-left: 5px; /* Reduced margin between arrow and text */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    flex-direction: column; /* Ensures vertical alignment */
+}
+
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+/* Import bubble font */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+.bouncing-text {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive; /* Bubble-like font */
+    font-size: 24px; /* Smaller font size */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    white-space: nowrap; /* Ensure text stays on one line */
+}
+
+.bouncing-text span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* Optional: Add a slight margin for spacing between letters */
+    margin: 0 1px;
+}
+
+.bouncing-text span:hover {
+    transform: translateY(-5px); /* Adjust bounce effect */
+}
+        .welcome-wrapper {
+            position: absolute;
+            top: 150px;
+            text-align: center;
+            width: 100%;
+        }
+        .welcome-wrapper h1 {
+            font-size: 2.5em;
+            color: #f0f0f0;
+            font-family: 'Pacifico', cursive;
+        }
+        /* Container for the slider to center it vertically */
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Slider styling */
+.slider {
+  width: 85%;
+  max-width: 1280px;
+  height: 60vh; /* Adjust the height as needed */
+  margin: 0; /* Remove top margin to center vertically */
+}
+
+.slider__content {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scrollbar-color: var(--scrollcolor) var(--scrollbackground);
+}
+
+.slider__content::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 1rem;
+  background: var(--scrollbackground);
+}
+
+.slider__content::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--scrollcolor);
+}
+
+.slider__content::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background: var(--scrollbackground);
+}
+
+.slider__item {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 100%;
+  width: 100%;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+@media (min-width: 460px) {
+  .slider__item {
+    aspect-ratio: 0.6666666667;
+    min-width: calc((100% / 2) - 2rem);
+  }
+}
+
+@media (min-width: 940px) {
+  .slider__item {
+    min-width: calc((100% / 3) - 4rem);
+  }
+}
+
+.slider__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slider__info {
+  position: relative;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(32, 50, 57, 0));
+}
+
+.slider__info h2 {
+  color: #fff;
+  font-family: system-ui;
+  line-height: 1.1;
+  font-weight: 300;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slider__nav {
+  margin: 1rem 0 4rem;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+@media (min-width: 460px) {
+  .slider__nav {
+    justify-content: flex-end;
+  }
+}
+
+.slider__nav__button {
+  margin: 0;
+  appearance: none;
+  border: 0;
+  border-radius: 2rem;
+  background: #fff;
+  color: #203239;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  pointer-events: none;
+  transition: 0.2s ease-out;
+  opacity: 0.25;
+}
+
+.slider__nav__button--active {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+
+.get-started-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+  color: #fff;
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.get-started-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+
+    </style>
+</head>
+<body>
+    <nav>
+            <div class="logo" style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+            <!-- Left side: Image logo -->
+            <img src="Logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+    
+          <!-- Right side: Transparent text -->
+       <span class="bouncing-text">
+        <span>R</span><span>e</span><span>c</span><span>y</span><span>c</span><span>l</span><span>e</span>
+        <span> </span><span>i</span><span>t</span>
+      </span>
+    
+        </div>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="">Home</a></li>
+                  <li><a href="">Chat with AI</a></li>
+              
+                  <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">
+                        Recycling future
+                      <span class="arrow">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content">
+                      <a href="#">Recycling Technology Innovations</a>
+                      <a href="#">Sustainable Waste Management Practices</a>
+                     <a href="#">AI in Recycling Systems</a>
+                  </li>
+             
+                <li class="dropdown">
+                  <a href="javascript:void(0)" class="dropbtn">
+                    About
+                    <span class="arrow">&#9660;</span>
+                  </a>
+                  <div class="dropdown-content">
+                  <a href="About us.html">About us</a>
+                    <a href="Who are us.html">Who are us</a>
+                    <a href="Our team.html">Our team</a>
+                  </div>
+                </li>
+              </ul>
+              
+        </nav>
+    
+<div class="welcome-wrapper">
+    <h1 id="welcomeMessage">Welcome!</h1>
+</div>
+<div class="slider-container">
+<div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
+    <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
+        <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG1.uqwDo9kzhc8fSnNmoH8b?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Image">
+            <div class="slider__info">
+              <h2>Trade</h2>
+              <a href="Trade.php" class="get-started-button">Get Started</a>
+            </div>
+          </div>          
+          <div class="slider__item">
+          <img class="slider__image" src="https://th.bing.com/th/id/OIG1.bdvUqLAp77ZsKthv7OgQ?pid=ImgGn" alt="Image">
+          <div class="slider__info">
+            <h2>Buy and Sell</h2>
+            <a href="Buy and sell.php" class="get-started-button">Get Started</a>
+          </div>
+        </div>          
+        <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG2.gisOhvZ8DT4QU8h_e7d5?pid=ImgGn" alt="Image">
+            <div class="slider__info">
+              <h2>Quiz</h2>
+              <a href="Quiz.html" class="get-started-button">Get Started</a>
+            </div>
+          </div>          
+          <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG1.upGNCWKrPrK7vM7TONqY?pid=ImgGn" alt="Image">
+            <div class="slider__info">
+              <h2>Donate</h2>
+              <a href="Donate.html" class="get-started-button">Get Started</a>
+            </div>
+          </div>          
+          <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG1.upGNCWKrPrK7vM7TONqY?pid=ImgGn" alt="Image">
+            <div class="slider__info">
+              <h2>Quiz</h2>
+              <a href="Donate.html" class="get-started-button">Get Started</a>
+            </div>
+          </div>    
+          <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG2.OOKgiVfxiGkkzD6XNhup?pid=ImgGn" alt="Image">
+            <div class="slider__info">
+              <h2>Game</h2>
+              <a href="Game.html" class="get-started-button">Get Started</a>
+            </div>
+          </div>  
+
+          <div class="slider__item">
+            <img class="slider__image" src="https://th.bing.com/th/id/OIG1.stZaXbeQMV8X_GpUOA4L?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Image">
+            <div class="slider__info">
+              <h2>Learn</h2>
+              <a href="Learn.html" class="get-started-button">Get Started</a>
+            </div>
+          </div>    
+     
+      </div>
+    </div>
+    <div class="slider__nav" style="display: flex;justify-content: center;">
+      <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
+      <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
+    </div>
+  </div>
+</div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.js"></script>
+<script>
+    // Function to get query parameters
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const queryArray = queryString.split('&');
+        queryArray.forEach(param => {
+            const [key, value] = param.split('=');
+            params[decodeURIComponent(key)] = decodeURIComponent(value);
+        });
+        return params;
+    }
+
+    // Update welcome message
+    function updateWelcomeMessage() {
+        const params = getQueryParams();
+        const firstName = params['firstName'] || 'User';
+        const lastName = params['lastName'] || '';
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        welcomeMessage.textContent = `Welcome, ${firstName} ${lastName}!`;
+    }
+
+    // Call function to update welcome message
+    updateWelcomeMessage();
+</script>
+</body>
+</html>

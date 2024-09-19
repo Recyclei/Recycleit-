@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome-Recyclit!</title>
+    <style>
+        body {
+            background-color: #2B3A3F;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding: 10px;
+            margin: 0;
+        }
+
+        body {
+            background-color: #008227;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            img {
+                margin-bottom: 1em;
+            }
+            .quote {
+                font-size: 1em;
+            }
+        }
+        nav {
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px); /* For better cross-browser support */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    z-index: 999; /* Ensure the nav bar stays on top */
+    display: flex;
+    position: fixed;
+    top: 20px; /* This moves the nav down from the top */
+    width:95%;
+    border-radius: 50px; /* This adds curves to the navigation bar */
+}
+
+
+.logo {
+    padding: 1vh 1vw;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 88vw;
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /* Updated font to Roboto */
+    font-size: 1.2rem; /* Font size for better readability */
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    color: #131418; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition for color */
+    font-weight: 500; /* Adding some weight for a stronger appearance */
+    text-decoration: none; /* Removing underline */
+}
+
+/* Hover State */
+.nav-links li a:hover {
+    color: #1524ff; /* Deep indigo color */
+}
+
+
+.nav-links li {
+    position: relative;
+}
+
+
+
+/* Hamburger icon styles for small screens */
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: #131418; /* Black color for consistency */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-links {
+        font-size: 1.5rem; /* Larger font size for smaller screens */
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #f2f5f7; /* Light background for contrast */
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        top: 0;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+    }
+
+    li.fade {
+        opacity: 1;
+    }
+}
+
+/* Hamburger icon transformation on click */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    transition: all 0.7s ease;
+    width: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent; /* No background for dropdown button */
+  color: #fff;
+  border: none; /* Remove border */cursor: pointer;
+  border-radius: 25px; /* Curved corners for button */
+  cursor: pointer;
+  padding: 0; /* Remove padding /font-weight: normal; / Remove bold font */
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Added bold font for visibility */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: transparent; /* No hover background /border-color: transparent; / No hover border */
+    border-color: #666; /* Darker border on hover */
+}
+
+.arrow {
+  margin-left: 5px; /* Reduced margin between arrow and text */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    flex-direction: column; /* Ensures vertical alignment */
+}
+
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+/* Import bubble font */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+.bouncing-text {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive; /* Bubble-like font */
+    font-size: 24px; /* Smaller font size */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    white-space: nowrap; /* Ensure text stays on one line */
+}
+
+.bouncing-text span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* Optional: Add a slight margin for spacing between letters */
+    margin: 0 1px;
+}
+
+.bouncing-text span:hover {
+    transform: translateY(-5px); /* Adjust bounce effect */
+}
+        #welcomeContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 280px;
+        }
+
+        h2 {
+            font-size: 2em;
+          
+        }
+
+        #welcomeMessage {
+            color: #9eff57;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+         
+        }
+
+        :root {
+            --scrollcolor: #fff;
+            --scrollbackground: #141e27;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        body {
+            background: #203239;
+        }
+
+        .slider {
+            width: 85%;
+            max-width: 1280px;
+            margin: 0 auto;
+            
+        }
+
+        .slider__content {
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            scrollbar-color: var(--scrollcolor) var(--scrollbackground);
+        }
+
+        .slider__content::-webkit-scrollbar {
+            height: 0.5rem;
+            width: 0.5rem;
+            border-radius: 1rem;
+            background: var(--scrollbackground);
+        }
+
+        .slider__content::-webkit-scrollbar-thumb {
+            border-radius: 1rem;
+            background: var(--scrollcolor);
+        }
+
+        .slider__content::-webkit-scrollbar-track {
+            border-radius: 1rem;
+            background: var(--scrollbackground);
+        }
+
+        .slider__item {
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-width: 100%;
+            width: 100%;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1;
+        }
+
+        @media (min-width: 460px) {
+            .slider__item {
+                aspect-ratio: 0.6666666667;
+                min-width: calc((100% / 2) - 2rem);
+            }
+        }
+
+        @media (min-width: 940px) {
+            .slider__item {
+                min-width: calc((100% / 3) - 4rem);
+            }
+        }
+
+        .slider__image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slider__info {
+            position: relative;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(32, 50, 57, 0));
+        }
+
+        .slider__info h2 {
+            color: #fff;
+            font-family: system-ui;
+            line-height: 1.1;
+            font-weight: 300;
+            font-size: 1.75rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+
+          <nav>
+            <div class="logo" style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+            <!-- Left side: Image logo -->
+            <img src="Logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+    
+          <!-- Right side: Transparent text -->
+       <span class="bouncing-text">
+        <span>R</span><span>e</span><span>c</span><span>y</span><span>c</span><span>l</span><span>e</span>
+        <span> </span><span>i</span><span>t</span>
+      </span>
+    
+        </div>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="">Home</a></li>
+                  <li><a href="Chat with AI.html">Chat with AI</a></li>
+              
+                  <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">
+                        Recycling future
+                      <span class="arrow">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content">
+                      <a href="Recycling Technology Innovations.html">Recycling Technology Innovations</a>
+                      <a href="Sustainable Waste Management Practices.html">Sustainable Waste Management Practices</a>
+                     <a href="AI in Recycling Systems.html">AI in Recycling Systems</a>
+                  </li>
+             
+                <li class="dropdown">
+                  <a href="javascript:void(0)" class="dropbtn">
+                    About
+                    <span class="arrow">&#9660;</span>
+                  </a>
+                  <div class="dropdown-content">
+                  <a href="About us.html">About us</a>
+                    <a href="Who are us.html">Who are us</a>
+                    <a href="Our team.html">Our team</a>
+                  </div>
+                </li>
+              </ul>
+              
+        </nav>
+        </div> 
+    <div id="welcomeContainer">
+        <h2 id="welcomeMessage">Welcome, <span id="userName"></span>!</h2>
+    </div>
+
+    <div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
+        <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
+
+                <a href="trade.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG1.uqwDo9kzhc8fSnNmoH8b?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Image">
+                    <div class="slider__info">
+                        <h2>Trade</h2>
+                    </div>
+                </a>
+                <div class="slider__item">
+                    <a href="learn.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG1.stZaXbeQMV8X_GpUOA4L?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Image">
+                    <div class="slider__info">
+                        <h2>Learn</h2>
+                    </div>
+                </a>
+                </div>
+                <div class="slider__item">
+                    <a href="Buy and sell.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG1.bdvUqLAp77ZsKthv7OgQ?pid=ImgGn" alt="Image">
+                    <div class="slider__info">
+                        <h2>Buy and sell</h2>
+                    </div>
+                </a>
+                </div>
+                <div class="slider__item">
+                    <a href="Quiz.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG2.gisOhvZ8DT4QU8h_e7d5?pid=ImgGn" alt="Image">
+                    <div class="slider__info">
+                        <h2>Quiz</h2>
+                    </div>
+                </a>
+                </div>
+                <div class="slider__item">
+                    <a href="Game.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG1.stZaXbeQMV8X_GpUOA4L?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Image">
+                    <div class="slider__info">
+                        <h2>Game</h2>
+                    </div>
+                </a>
+                </div>
+                <div class="slider__item">
+                    <a href="Donate.html" class="slider__item">
+                    <img class="slider__image" src="https://th.bing.com/th/id/OIG1.upGNCWKrPrK7vM7TONqY?pid=ImgGn" alt="Image">
+                    <div class="slider__info">
+                        <h2>Donate</h2>
+                    </div>
+                </a>
+                </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        const userName = params['name'];
+
+        
+        document.getElementById('userName').textContent = userName;
+        const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  const links = document.querySelectorAll(".nav-links li");
+
+
+  hamburger.addEventListener('click', () => {
+    // Animate Links
+    navLinks.classList.toggle("open");
+    links.forEach(link => {
+      link.classList.toggle("fade");
+    });
+
+    // Hamburger Animation
+    hamburger.classList.toggle("toggle");
+  });
+    </script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up-Recycle it!</title>
+    <style>
+        body {
+            background-color: #008227;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-size: cover;
+            background: url('https://images.unsplash.com/photo-1716654195483-de7a5ad4d23c?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); /* Importing Roboto font */
+        .header {
+  position: relative;
+  text-align: center;
+  background: -webkit-linear-gradient(to right, #414345, #232526);
+  background: linear-gradient(to right, #414345, #232526);
+  color: white;
+}
+
+ nav {
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px); /* For better cross-browser support */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    z-index: 999; /* Ensure the nav bar stays on top */
+    display: flex;
+    position: fixed;
+    top: 20px; /* This moves the nav down from the top */
+    width:95%;
+    border-radius: 50px; /* This adds curves to the navigation bar */
+}
+
+
+.logo {
+    padding: 1vh 1vw;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 88vw;
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /* Updated font to Roboto */
+    font-size: 1.2rem; /* Font size for better readability */
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    color: #131418; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition for color */
+    font-weight: 500; /* Adding some weight for a stronger appearance */
+    text-decoration: none; /* Removing underline */
+}
+
+/* Hover State */
+.nav-links li a:hover {
+    color: #1524ff; /* Deep indigo color */
+}
+
+
+.nav-links li {
+    position: relative;
+}
+
+
+
+/* Hamburger icon styles for small screens */
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: #131418; /* Black color for consistency */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-links {
+        font-size: 1.5rem; /* Larger font size for smaller screens */
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #f2f5f7; /* Light background for contrast */
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        top: 0;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+    }
+
+    li.fade {
+        opacity: 1;
+    }
+}
+
+/* Hamburger icon transformation on click */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    transition: all 0.7s ease;
+    width: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent; /* No background for dropdown button */
+  color: #fff;
+  border: none; /* Remove border */cursor: pointer;
+  border-radius: 25px; /* Curved corners for button */
+  cursor: pointer;
+  padding: 0; /* Remove padding /font-weight: normal; / Remove bold font */
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Added bold font for visibility */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: transparent; /* No hover background /border-color: transparent; / No hover border */
+    border-color: #666; /* Darker border on hover */
+}
+
+.arrow {
+  margin-left: 5px; /* Reduced margin between arrow and text */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    flex-direction: column; /* Ensures vertical alignment */
+}
+
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+/* Import bubble font */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+.bouncing-text {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive; /* Bubble-like font */
+    font-size: 24px; /* Smaller font size */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    white-space: nowrap; /* Ensure text stays on one line */
+}
+
+.bouncing-text span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* Optional: Add a slight margin for spacing between letters */
+    margin: 0 1px;
+}
+
+.bouncing-text span:hover {
+    transform: translateY(-5px); /* Adjust bounce effect */
+}
+    
+        .signup-card {
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center
+        }
+
+        .signup-card input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #37474F;
+            color: #ffffff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .signup-card button.signup-button {
+            display: inline-block;
+            background-color: #9eff57;
+            color: #1F2A2E;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .signup-card button.signup-button:hover {
+            background-color: #7ecc42;
+        }
+
+        .signup-card a {
+            color: #9eff57;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+        <!-- Left side: Image logo -->
+        <img src="Logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+
+      <!-- Right side: Transparent text -->
+   <span class="bouncing-text">
+    <span>R</span><span>e</span><span>c</span><span>y</span><span>c</span><span>l</span><span>e</span>
+    <span> </span><span>i</span><span>t</span>
+  </span>
+
+    </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="">Home</a></li>
+              <li><a href="Chat with AI.html">Chat with AI</a></li>
+          
+              <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    Recycling future
+                  <span class="arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                  <a href="Recycling Technology Innovations.html">Recycling Technology Innovations</a>
+                  <a href="Sustainable Waste Management Practices.html">Sustainable Waste Management Practices</a>
+                 <a href="AI in Recycling Systems.html">AI in Recycling Systems</a>
+              </li>
+         
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">
+                About
+                <span class="arrow">&#9660;</span>
+              </a>
+              <div class="dropdown-content">
+              <a href="About us.html">About us</a>
+                <a href="Who are us.html">Who are us</a>
+                <a href="Our team.html">Our team</a>
+              </div>
+            </li>
+          </ul>
+          
+    </nav>
+
+    </div> 
+<!-- Sign Up Card -->
+<div class="signup-card" id="signUpCard">
+    <h2>Sign Up</h2>
+    <form onsubmit="return signUp()">
+        <input type="text" id="nameInput" placeholder="Enter your name" required>
+        <input type="email" id="emailInput" placeholder="Enter your email" required>
+        <input type="password" id="passwordInput" placeholder="Create a password" required>
+        <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="sigin in.html">Sign In</a></p>
+</div>
+
+<script>
+    function signUp() {
+        var name = document.getElementById("nameInput").value;
+        var email = document.getElementById("emailInput").value;
+        var password = document.getElementById("passwordInput").value;
+
+        // Check if email or name is already used
+        if (isEmailUsed(email) || isNameUsed(name)) {
+            alert("Email or name is already in use. Please choose a different one.");
+            return false; // Prevent form submission
+        }
+
+        // Check if any of the fields are empty
+        if (!name || !email || !password) {
+            alert("Please fill in all fields before continuing.");
+            return false; // Prevent form submission
+        }
+
+        // Validate email using a regular expression
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        // Validate password strength (minimum 8 characters, at least one uppercase letter, one lowercase letter, and one digit)
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.");
+            return false;
+        }
+
+        // Save user information to localStorage
+        var users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push({ name: name, email: email, password: password });
+        localStorage.setItem("users", JSON.stringify(users));
+
+        // Redirect to the welcome page with the user's name as a query parameter
+        window.location.href = 'welcome.html?name=' + encodeURIComponent(name);
+
+        return false; // Prevent form submission
+    }
+
+    function isEmailUsed(email) {
+        // Check if the email is already used (you can replace this with your logic)
+        var users = JSON.parse(localStorage.getItem("users")) || [];
+        return users.some(user => user.email === email);
+    }
+
+    function isNameUsed(name) {
+        // Check if the name is already used (you can replace this with your logic)
+        var users = JSON.parse(localStorage.getItem("users")) || [];
+        return users.some(user => user.name === name);
+    }
+    // Your other JavaScript code here
+
+    const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  const links = document.querySelectorAll(".nav-links li");
+
+
+  hamburger.addEventListener('click', () => {
+    // Animate Links
+    navLinks.classList.toggle("open");
+    links.forEach(link => {
+      link.classList.toggle("fade");
+    });
+
+    // Hamburger Animation
+    hamburger.classList.toggle("toggle");
+  });
+</script>
+
+</body>
+</html>

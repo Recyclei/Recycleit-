@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Qe3e0w+4TdM14Y8tLKbfgzldP0qL8ouBHRf/eI4KGCZ4mX45JWdXTsxwGMy9J2sHLxwY2F/kG3tdSbP+wGijsA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Trade-Recycle it!</title>
+    <link rel="icon" href="https://i.imgur.com/JQVkXNQ.png" type="image/png">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden; /* Add this line to prevent horizontal scrolling */
+}
+
+        
+
+        p {
+            margin-bottom: 1em;
+            font-size: 1em;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            img {
+                margin-bottom: 1em;
+            }
+            .quote {
+                font-size: 1em;
+            }
+        }
+
+        nav {
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px); /* For better cross-browser support */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    z-index: 999; /* Ensure the nav bar stays on top */
+    display: flex;
+    position: fixed;
+    top: 20px; /* This moves the nav down from the top */
+    width:95%;
+    border-radius: 50px; /* This adds curves to the navigation bar */
+}
+
+
+.logo {
+    padding: 1vh 1vw;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 88vw;
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /* Updated font to Roboto */
+    font-size: 1.2rem; /* Font size for better readability */
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    color: #131418; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition for color */
+    font-weight: 500; /* Adding some weight for a stronger appearance */
+    text-decoration: none; /* Removing underline */
+}
+
+/* Hover State */
+.nav-links li a:hover {
+    color: #1524ff; /* Deep indigo color */
+}
+
+
+.nav-links li {
+    position: relative;
+}
+
+
+
+/* Hamburger icon styles for small screens */
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: #131418; /* Black color for consistency */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-links {
+        font-size: 1.5rem; /* Larger font size for smaller screens */
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #f2f5f7; /* Light background for contrast */
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        top: 0;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+    }
+
+    li.fade {
+        opacity: 1;
+    }
+}
+
+/* Hamburger icon transformation on click */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    transition: all 0.7s ease;
+    width: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent; /* No background for dropdown button */
+  color: #fff;
+  border: none; /* Remove border */cursor: pointer;
+  border-radius: 25px; /* Curved corners for button */
+  cursor: pointer;
+  padding: 0; /* Remove padding /font-weight: normal; / Remove bold font */
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Added bold font for visibility */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: transparent; /* No hover background /border-color: transparent; / No hover border */
+    border-color: #666; /* Darker border on hover */
+}
+
+.arrow {
+  margin-left: 5px; /* Reduced margin between arrow and text */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    flex-direction: column; /* Ensures vertical alignment */
+}
+
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+/* Import bubble font */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
+.bouncing-text {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive; /* Bubble-like font */
+    font-size: 24px; /* Smaller font size */
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    white-space: nowrap; /* Ensure text stays on one line */
+}
+
+.bouncing-text span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* Optional: Add a slight margin for spacing between letters */
+    margin: 0 1px;
+}
+
+.bouncing-text span:hover {
+    transform: translateY(-5px); /* Adjust bounce effect */
+}
+    
+    #tradeCard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Added gap between cards */
+            padding: 20px; /* Added padding to the container */
+            padding: 10px; /* Adjust padding for smaller screens */
+            gap: 10px; /* Adjust gap between cards for smaller screens */
+        }
+
+        .card {
+            background-color: #78ab78; /* Updated background color to recycling color */
+            border-radius: 20px; /* Increased border radius for cloud effect */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px; /* Adjusted width */
+            max-width: 100%; /* Prevents cards from becoming wider than their container */
+            transition: transform 0.3s ease;
+      
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 20px; /* Adjusted border radius for cloud effect */
+            border-top-right-radius: 20px; /* Adjusted border radius for cloud effect */
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-content {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .card h2 {
+            color: #fff; /* Updated font color to white */
+            font-size: 1.2em; /* Adjusted font size */
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            color: #f0f0f0; /* Updated font color to off-white */
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+
+
+.navbar1 {
+  position: relative;
+  z-index: 2; /* Add this line */
+}
+
+
+  .navbar1-container1 input[type="checkbox"],
+  .navbar1-container1 .hamburger-lines {
+    display: block;
+  }
+
+  .navbar1-container1 {
+    display: block;
+    position: relative;
+    height: 64px;
+    top: 4rem;
+  }
+
+  .navbar1-container1 input[type="checkbox"] {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 30px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+  }
+
+  .navbar1-container1 .hamburger-lines {
+    display: block;
+    height: 23px;
+    width: 35px;
+    position: absolute;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .navbar1-container1 .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: #333;
+  }
+
+  .navbar1-container1 .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .navbar1-container1 .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .navbar1-container1 .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .navbar1 .menu-items {
+    padding-top: 100px;
+    background: #fff;
+    height: 100vh;
+    max-width: 300px;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 5px 0px 10px 0px #aaa;
+  }
+
+  .navbar1 .menu-items li {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+
+  .navbar1-container1 input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
+  .navbar1-container1 input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(35deg);
+  }
+
+  .navbar1-container1 input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+
+  .navbar1-container1 input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-35deg);
+  }
+
+  form {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust the width here */
+    margin: 0 auto; /* Center the form horizontally */
+    max-width: 90%; /* Adjust max-width for smaller screens */
+}
+
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .input1[type="text"],
+    .input1[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .input1[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4a8c4a;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .input1[type="submit"]:hover {
+        background-color: #357c35;
+    }
+
+
+
+    .container {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  margin: auto;
+ top: -16px;
+}
+
+.mainbox {
+  box-sizing: border-box;
+  position: relative;
+  width: 230px;
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  border-radius: 160px;
+  background-color: rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+.checkbox:focus {
+  border: none;
+  outline: none;
+}
+
+.checkbox:checked {
+  right: 10px;
+}
+
+.checkbox:checked ~ .mainbox {
+  width: 50px;
+}
+
+.checkbox:checked ~ .mainbox .search_input {
+  width: 0;
+  height: 0px;
+}
+
+.checkbox:checked ~ .mainbox .iconContainer {
+  padding-right: 8px;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 17px;
+  top: 10px;
+  z-index: 9;
+  cursor: pointer;
+  appearance: none;
+}
+
+.search_input {
+  box-sizing: border-box;
+  height: 100%;
+  width: 170px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  font-size: 1em;
+  color: white;
+  transition: all 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 70%; /* Adjust width for smaller screens */
+}
+
+.search_input::placeholder {
+  color: rgba(255, 255, 255, 0.776);
+}
+
+.iconContainer {
+  box-sizing: border-box;
+  padding-top: 5px;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.search_icon {
+  box-sizing: border-box;
+  fill: white;
+  font-size: 1.3em;
+  font-size: 1em; /* Adjust icon size for smaller screens */
+}
+        /* Form styles */
+        #addItemForm {
+            background-color: #78ab78;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        #addItemForm h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #addItemForm label {
+            color: #fff;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #addItemForm input[type="text"],
+        #addItemForm input[type="tel"],
+        #addItemForm input[type="url"] {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #addItemForm input[type="submit"] {
+            background-color: #2b2b2b;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            transition: background-color 0.3s ease;
+        }
+
+        #addItemForm input[type="submit"]:hover {
+            background-color: #357c35; /* Updated hover background color */
+        }
+/* CSS for styling the share button */
+.share-button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* No border */
+    color: white; /* White text */
+    padding: 12px 24px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    transition-duration: 0.4s; /* Animation duration */
+    cursor: pointer; /* Cursor pointer */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+    position: relative; /* Relative positioning */
+    overflow: hidden; /* Hide overflow */
+}
+
+/* CSS for styling the button before hovering */
+.share-button:before {
+    background-color: #388e3c; /* Darker green background */
+    border: none; /* No border */
+    content: ""; /* Empty content */
+    display: block; /* Block display */
+    height: 100%; /* Full height */
+    left: 100%; /* Position from right */
+    opacity: 0; /* Transparent */
+    position: absolute; /* Absolute positioning */
+    top: 0; /* Position from top */
+    transition: left 0.4s, opacity 0.4s; /* Transition */
+    width: 100%; /* Full width */
+    z-index: -1; /* Behind button */
+}
+
+/* CSS for styling the button on hover */
+.share-button:hover:before {
+    left: 0; /* Move from right to left on hover */
+    opacity: 1; /* Full opacity on hover */
+}
+
+/* CSS for styling the button text on hover */
+.share-button:hover {
+    color: #000; /* Black text on hover */
+}
+
+.upload-container {
+    margin-bottom: 20px;
+}
+
+.upload-label {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.upload-input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+.upload-input:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+        <!-- Left side: Image logo -->
+        <img src="Logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+
+      <!-- Right side: Transparent text -->
+   <span class="bouncing-text">
+    <span>R</span><span>e</span><span>c</span><span>y</span><span>c</span><span>l</span><span>e</span>
+    <span> </span><span>i</span><span>t</span>
+  </span>
+
+    </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="">Home</a></li>
+              <li><a href="Chat with AI.html">Chat with AI</a></li>
+          
+              <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    Recycling future
+                  <span class="arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                  <a href="Recycling Technology Innovations.html">Recycling Technology Innovations</a>
+                  <a href="Sustainable Waste Management Practices.html">Sustainable Waste Management Practices</a>
+                 <a href="AI in Recycling Systems.html">AI in Recycling Systems</a>
+              </li>
+         
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">
+                About
+                <span class="arrow">&#9660;</span>
+              </a>
+              <div class="dropdown-content">
+              <a href="About us.html">About us</a>
+                <a href="Who are us.html">Who are us</a>
+                <a href="Our team.html">Our team</a>
+              </div>
+            </li>
+          </ul>
+          
+    </nav>
+        </div> 
+    
+
+        <nav1 class="navbar1">
+          <div class="navbar1-container1 container1">
+              <input type="checkbox" name="" id="">
+              <div class="hamburger-lines">
+                  <span class="line line1"></span>
+                  <span class="line line2"></span>
+                  <span class="line line3"></span>
+              </div>
+              <ul class="menu-items">
+                
+                <form id="addItemForm" style="background-color: #78ab78; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto;">
+                    <h2 style="color: #fff; margin-bottom: 20px; text-align: center;">Add a recycled item for trading</h2>
+                    <div style="margin-bottom: 10px;">
+                        <label for="name" style="color: #fff; font-size: 16px; display: block; margin-bottom: 5px;">Item Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter the name of the item" style="padding: 10px; width: 100%; border-radius: 5px; border: none;" pattern="[A-Za-z ]+" title="Please enter only letters and spaces" required>
+                    </div>                
+                    <div style="margin-bottom: 10px;">
+                        <label for="itemToTrade" style="color: #fff; font-size: 16px; display: block; margin-bottom: 5px;">Item to trade:</label>
+                        <span id="itemNameLabel" style="color: #fff; font-size: 16px; margin-bottom: 5px;">Item I want to trade with:</span>
+                        <input type="text" id="itemToTrade" name="itemToTrade" placeholder="Name of the item you want to trade " required>
+                    </div>
+                   <div style="margin-bottom: 10px;">
+    <label for="phone" style="color: #fff; font-size: 16px; display: block; margin-bottom: 5px;">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number (10 or 12 digits)" style="padding: 10px; width: 100%; border-radius: 5px; border: none;" pattern="\d{10}|\d{12}" title="Please enter 10 or 12 digits" required>
+</div>
+
+                    <div class="upload-container">
+                        <label for="photo" class="upload-label">Upload Photo:</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" class="upload-input">
+                    </div>                    
+                    <button type="submit" id="addItemBtn" style="background-color: #2b2b2b; color: #fff; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; display: block; margin: auto;">Add Item</button>
+                </form>
+                
+          </div>
+      </nav1>
+     
+
+
+          <body style="margin: 0; padding: 0;">
+            <p style="font-weight: bold; position: relative; top: 0px; left: 100px;">🡸Add a new item from here.</p>
+      
+
+
+
+      
+            <div class="container">
+              <div class="container">
+                  <!-- Checkbox for toggling search -->
+                  <input checked class="checkbox" type="checkbox"> 
+                  <div class="mainbox">
+                      <!-- Icon container -->
+                      <div class="iconContainer">
+                          <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="search_icon">
+                              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                          </svg>
+                      </div>
+                      <!-- Search input -->
+                      <input class="search_input" id="searchInput" placeholder="Search" type="text">
+                  </div>
+              </div>
+          </div>
+          <!-- Container for trade cards -->
+          <div id="tradeCard"></div>
+ 
+          
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('addItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            submitForm();
+        });
+
+        function submitForm() {
+            // Your form submission logic here
+            
+            // Show SweetAlert success message
+            Swal.fire({
+                title: "Good job!",
+                text: "You added a new item!",
+                icon: "success"
+            });
+        }
+    });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+        // Load cards from local storage when the page is loaded
+        loadCards();
+
+        // Add event listener to the form for adding new cards
+        document.getElementById('addItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            submitForm();
+        });
+
+        // Function to load cards from local storage
+        function loadCards() {
+            var tradeCardContainer = document.getElementById('tradeCard');
+            var savedCards = JSON.parse(localStorage.getItem('tradeCards')) || [];
+
+            savedCards.forEach(function(cardData) {
+                var card = createCard(cardData);
+                tradeCardContainer.appendChild(card);
+            });
+        }
+
+       // Function to create a card element
+function createCard(cardData) {
+    var card = document.createElement('div');
+    card.classList.add('card');
+
+    card.innerHTML = `
+            <img src="${cardData.photoDataUrl}" alt="Item Photo"> <!-- Use the data URL directly -->
+            <div class="card-content">
+                <h2>${cardData.itemName}</h2>
+                <p>Item to trade with: ${cardData.itemToTrade}</p>
+                <p>Phone: ${cardData.phoneNumber}</p>
+            </div>
+            <button class="share-button">Share</button> <!-- Added share button -->
+        `;
+
+
+    // Add event listener to the share button
+    var shareButton = card.querySelector('.share-button');
+    shareButton.addEventListener('click', function() {
+        copyToClipboard(cardData);
+    });
+
+    return card;
+}
+
+// Function to handle copying card data to clipboard
+function copyToClipboard(cardData) {
+    var dataToCopy = `Item Name: ${cardData.itemName}\nItem to Trade: ${cardData.itemToTrade}\nPhone Number: ${cardData.phoneNumber}\nPhoto URL: ${cardData.photoUrl}`;
+
+    navigator.clipboard.writeText(dataToCopy).then(function() {
+        // Show SweetAlert success message after successful copy
+        Swal.fire({
+            title: "Good job!",
+            text: "Card data copied to clipboard successfully!",
+            icon: "success"
+        });
+    }).catch(function(err) {
+        console.error('Failed to copy to clipboard: ', err);
+        // Show SweetAlert error message if copying fails
+        Swal.fire({
+            title: "Oops!",
+            text: "Failed to copy card data to clipboard.",
+            icon: "error"
+        });
+    });
+}
+
+// Inside the createCard function, after creating other card elements:
+var shareButton = createShareButton(cardData);
+shareButton.addEventListener('click', function() {
+    copyToClipboard(cardData);
+});
+
+// Inside the createCard function, after creating other card elements:
+var shareButton = createShareButton(cardData);
+card.appendChild(shareButton);
+
+
+      
+    // Function to submit the form and add a new card
+    function submitForm() {
+        var itemName = document.getElementById('name').value;
+        var itemToTrade = document.getElementById('itemToTrade').value;
+        var phoneNumber = document.getElementById('phone').value;
+        var photoFile = document.getElementById('photo').files[0]; // Get the uploaded file
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var photoDataUrl = event.target.result;
+
+            var cardData = {
+                itemName: itemName,
+                itemToTrade: itemToTrade,
+                phoneNumber: phoneNumber,
+                photoDataUrl: photoDataUrl // Store the data URL directly
+            };
+            
+            // Create card element
+             // Create card element
+             var card = createCard(cardData);
+
+// Append card to container
+var tradeCardContainer = document.getElementById('tradeCard');
+tradeCardContainer.appendChild(card);
+
+// Save cards to local storage
+saveCards(cardData);
+};
+
+// Read the uploaded file as data URL
+reader.readAsDataURL(photoFile);
+}
+        // Function to save cards to local storage
+        function saveCards(cardData) {
+            var savedCards = JSON.parse(localStorage.getItem('tradeCards')) || [];
+            savedCards.push(cardData);
+            localStorage.setItem('tradeCards', JSON.stringify(savedCards));
+        }
+    });
+    document.getElementById('name').addEventListener('input', function(event) {
+        // Update the label text with the entered item name
+        document.getElementById('itemNameLabel').textContent = "Item I want to trade with: " + this.value;
+    }); 
+
+// Filter cards based on search input
+document.getElementById('searchInput').addEventListener('input', function(event) {
+    var searchInput = this.value.trim().toLowerCase();
+    var cardTitles = document.querySelectorAll('.card h2');
+
+    cardTitles.forEach(function(title) {
+        var cardTitleText = title.textContent.toLowerCase();
+        var card = title.parentElement.parentElement; // Adjusted to target the card element
+
+        if (cardTitleText.startsWith(searchInput)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // If no cards match the entered letter, show a message
+    var noMatchMessage = document.getElementById('noMatchMessage');
+    var matchingCards = document.querySelectorAll('.card[style="display: block;"]');
+    if (matchingCards.length === 0) {
+        noMatchMessage.style.display = 'block';
+    } else {
+        noMatchMessage.style.display = 'none';
+    }
+});
+
+const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  const links = document.querySelectorAll(".nav-links li");
+
+
+  hamburger.addEventListener('click', () => {
+    // Animate Links
+    navLinks.classList.toggle("open");
+    links.forEach(link => {
+      link.classList.toggle("fade");
+    });
+
+    // Hamburger Animation
+    hamburger.classList.toggle("toggle");
+  });
+</script>

@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Quiz</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .background {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgb(0, 52, 141), rgb(0, 255, 38));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-container {
+            max-width: 700px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/purty-wood.png');
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .choices {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .choices li {
+            margin: 10px 0;
+        }
+
+        .choices label {
+            font-size: 1.2em;
+        }
+
+        .quiz-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+        }
+
+        button:hover:enabled {
+            background-color: #004d40;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .level {
+            font-size: 1.2em;
+            color: #004d40;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer, .wrong-answer {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: opacity 0.5s;
+        }
+
+        .correct-answer {
+            color: white;
+            background-color: green;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .wrong-answer {
+            color: white;
+            background-color: red;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #score {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #00796b;
+        }
+
+        #message {
+            font-size: 1.2em;
+            color: red;
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: none; /* Initially hide the timer */
+        }
+
+        #leaderboard {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: left;
+        }
+
+        #leaderboard li {
+            margin-bottom: 5px;
+        }
+
+        #resetCooldown {
+            display: none; /* Initially hide the button */
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #resetCooldown:disabled {
+            background-color: #cccccc;
+        }
+
+        #resetCooldown:hover:enabled {
+            background-color: #004d40;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #ffcc00; /* Change this to your desired background color */
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #confirm-payment {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #confirm-payment:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="quiz-container" id="quiz-container">
+        <h2>Recycling Quiz</h2>
+        <div id="score">Score: 0</div>
+        <div id="quiz"></div>
+        <div class="quiz-controls">
+            <button id="submit">Submit</button>
+            <button id="resetCooldown">Use 3 points to remove cooldown</button>
+        </div>
+        <div id="results"></div>
+        <div id="message"></div>
+        <div id="timer"></div>
+        <h3>Leaderboard</h3>
+        <ul id="leaderboard"></ul>
+    </div>
+</div>
+
+<script>
+    const quizData = {
+        easy: [
+            {
+                question: "What is the universal symbol for recycling?",
+                choices: ["A) Inverted triangle", "B) Two opposing arrows", "C) Three arrows arranged in a circular triangle", "D) Closed circle"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following materials can be properly recycled?",
+                choices: ["A) Plastic bags", "B) Plastic bottles", "C) Food scraps", "D) All of the above"],
+                answer: "B"
+            },
+            {
+                question: "What is the main benefit of recycling paper?",
+                choices: ["A) Reducing water consumption", "B) Saving energy", "C) Reducing deforestation", "D) All of the above"],
+                answer: "A"
+            },
+            {
+                question: "What type of glass can be recycled?",
+                choices: ["A) Window glass", "B) Drinking glass", "C) Glass bottles", "D) All of the above"],
+                answer: "A"
+            },
+            {
+                question: "Which of these is not typically recyclable?",
+                choices: ["A) Cardboard", "B) Styrofoam", "C) Aluminum cans", "D) Glass jars"],
+                answer: "B"
+            },
+            {
+                question: "What can recycled plastic bottles be turned into?",
+                choices: ["A) T-shirts", "B) Park benches", "C) Carpet", "D) All of the above"],
+                answer: "D"
+            },
+            {
+                question: "Which country has the highest recycling rate in the world?",
+                choices: ["A) Germany", "B) United States", "C) China", "D) Japan"],
+                answer: "A"
+            },
+            {
+                question: "What type of plastic is the easiest to recycle?",
+                choices: ["A) PET (Polyethylene Terephthalate)", "B) PVC (Polyvinyl Chloride)", "C) LDPE (Low-Density Polyethylene)", "D) PS (Polystyrene)"],
+                answer: "A"
+            },
+            {
+                question: "What does the number in the recycling symbol on plastics indicate?",
+                choices: ["A) The number of times the plastic has been recycled", "B) The type of plastic", "C) The recycling center", "D) The manufacturing date"],
+                answer: "B"
+            },
+            {
+                question: "What is the process of turning waste materials into new materials and objects called?",
+                choices: ["A) Composting", "B) Incineration", "C) Recycling", "D) Landfilling"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following is a benefit of recycling?",
+                choices: ["A) Conserves natural resources", "B) Saves energy", "C) Reduces waste", "D) All of the above"],
+                answer: "D"
+            },
+            {
+                question: "How many times can glass be recycled without losing quality?",
+                choices: ["A) Once", "B) 3-5 times", "C) 7-9 times", "D) Indefinitely"],
+                answer: "D"
+            },
+            {
+                question: "What is e-waste?",
+                choices: ["A) Electronic waste", "B) Environmental waste", "C) Excess waste", "D) Emergency waste"],
+                answer: "A"
+            },
+            {
+                question: "Which of these items can be composted?",
+                choices: ["A) Meat scraps", "B) Plastic", "C) Banana peels", "D) Glass"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following materials can be recycled indefinitely without losing quality?",
+                choices: ["A) Paper", "B) Plastic", "C) Metal", "D) Glass"],
+                answer: "D"
+            },
+            {
+                question: "What does 'reduce' mean in the context of waste management?",
+                choices: ["A) Buying in bulk", "B) Decreasing the amount of waste produced", "C) Recycling waste products", "D) Using products multiple times"],
+                answer: "B"
+            },
+            {
+                question: "What is upcycling?",
+                choices: ["A) Disposing of waste properly", "B) Turning waste into new products", "C) Reusing waste without processing", "D) Creating products of higher value from waste"],
+                answer: "D"
+            },
+            {
+                question: "Which of these items should not be placed in a home compost bin?",
+                choices: ["A) Eggshells", "B) Coffee grounds", "C) Dairy products", "D) Grass clippings"],
+                answer: "C"
+            },
+            {
+                question: "What is the main reason for separating recyclables from non-recyclables?",
+                choices: ["A) To save space", "B) To reduce the cost of waste disposal", "C) To ensure proper recycling processes", "D) To make waste collection easier"],
+                answer: "C"
+            },
+            {
+                question: "What is the first step in the recycling process?",
+                choices: ["A) Sorting", "B) Collection", "C) Processing", "D) Manufacturing"],
+                answer: "B"
+            },
+            {
+                question: "Why is it important to clean recyclables before placing them in the recycling bin?",
+                choices: ["A) To avoid contamination", "B) To reduce smells", "C) To make sorting easier", "D) To save space"],
+                answer: "A"
+            },
+            {
+                question: "Which of these is a common method of recycling metals?",
+                choices: ["A) Melting and reforming", "B) Composting", "C) Shredding", "D) Landfilling"],
+                answer: "A"
+            },
+            {
+                question: "What type of waste is produced by households and businesses in urban areas?",
+                choices: ["A) Industrial waste", "B) Agricultural waste", "C) Municipal solid waste", "D) Hazardous waste"],
+                answer: "C"
+            },
+            {
+                question: "Which material is often recycled to create new newspapers?",
+                choices: ["A) Plastic", "B) Metal", "C) Glass", "D) Paper"],
+                answer: "D"
+            },
+            {
+                question: "What does 'biodegradable' mean?",
+                choices: ["A) Can be broken down by living organisms", "B) Can be recycled", "C) Can be reused", "D) Can be incinerated"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following can be made from recycled aluminum?",
+                choices: ["A) Foil", "B) Beverage cans", "C) Car parts", "D) All of the above"],
+                answer: "D"
+            },
+            {
+                question: "What is a landfill?",
+                choices: ["A) A site for the disposal of waste materials", "B) A recycling center", "C) A composting site", "D) An incineration plant"],
+                answer: "A"
+            },
+            {
+                question: "Why should batteries not be thrown in the regular trash?",
+                choices: ["A) They take up too much space", "B) They can leak harmful chemicals", "C) They are too heavy", "D) They are recyclable"],
+                answer: "B"
+            },
+            {
+                question: "What is the purpose of the 'reduce, reuse, recycle' slogan?",
+                choices: ["A) To promote proper waste disposal", "B) To encourage the purchase of new products", "C) To minimize waste and its impact on the environment", "D) To support incineration plants"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following is an example of reusing?",
+                choices: ["A) Using a plastic bag as a trash bag", "B) Buying a new water bottle", "C) Throwing away old clothes", "D) Recycling paper"],
+                answer: "A"
+            },
+            {
+                question: "Which of these plastics is commonly used for single-use items like straws and cutlery?",
+                choices: ["A) PET", "B) HDPE", "C) LDPE", "D) PS"],
+                answer: "D"
+            },
+            {
+                question: "What is a circular economy?",
+                choices: ["A) An economy where waste is minimized by reusing, recycling, and repairing products", "B) An economy that relies on continuous production and consumption", "C) An economy focused on landfill use", "D) An economy that does not recycle"],
+                answer: "A"
+            },
+            {
+                question: "What does 'post-consumer waste' refer to?",
+                choices: ["A) Waste generated during the manufacturing process", "B) Waste generated after a product has been used by consumers", "C) Waste that cannot be recycled", "D) Waste from agricultural activities"],
+                answer: "B"
+            },
+            {
+                question: "Which of the following can be recycled into mulch or compost?",
+                choices: ["A) Plastic bottles", "B) Glass jars", "C) Grass clippings", "D) Metal cans"],
+                answer: "C"
+            },
+            {
+                question: "What type of plastic are milk jugs commonly made from?",
+                choices: ["A) PET", "B) PVC", "C) HDPE", "D) LDPE"],
+                answer: "C"
+            },
+            {
+                question: "Which of these items is considered hazardous waste?",
+                choices: ["A) Newspaper", "B) Aluminum can", "C) Used motor oil", "D) Glass bottle"],
+                answer: "C"
+            },
+            {
+                question: "What is the term for the natural breakdown of organic matter by microorganisms?",
+                choices: ["A) Recycling", "B) Incineration", "C) Composting", "D) Landfilling"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following is an example of downcycling?",
+                choices: ["A) Turning plastic bottles into park benches", "B) Turning paper into new paper", "C) Turning glass bottles into new glass bottles", "D) Turning metal cans into new metal cans"],
+                answer: "A"
+            },
+            {
+                question: "What does 'single-stream recycling' mean?",
+                choices: ["A) All recyclables are collected together and sorted later", "B) Recyclables are collected separately by type", "C) Recyclables are incinerated", "D) Recyclables are taken to landfills"],
+                answer: "A"
+            },
+            {
+                question: "Which of these products can be made from recycled glass?",
+                choices: ["A) New glass bottles", "B) Insulation", "C) Road materials", "D) All of the above"],
+                answer: "D"
+            },
+            {
+                question: "Which of the following materials has the highest recycling rate?",
+                choices: ["A) Plastic", "B) Glass", "C) Paper", "D) Aluminum"],
+                answer: "D"
+            },
+            {
+                question: "What does the term 'MRF' stand for in recycling?",
+                choices: ["A) Material Recovery Facility", "B) Material Recycling Facility", "C) Municipal Recycling Facility", "D) Mechanical Recycling Facility"],
+                answer: "A"
+            },
+            {
+                question: "Why is it important to remove caps from plastic bottles before recycling?",
+                choices: ["A) Caps are made from a different type of plastic", "B) Caps are not recyclable", "C) Caps can cause jams in recycling machines", "D) All of the above"],
+                answer: "D"
+            },
+            {
+                question: "Which of the following is NOT a recyclable plastic?",
+                choices: ["A) PET", "B) PVC", "C) PLA", "D) HDPE"],
+                answer: "C"
+            },
+            {
+                question: "What is the purpose of a composting bin?",
+                choices: ["A) To recycle plastics", "B) To incinerate waste", "C) To break down organic waste into compost", "D) To dispose of hazardous waste"],
+                answer: "C"
+            },
+            {
+                question: "What is the main reason for using recycled materials in manufacturing?",
+                choices: ["A) To increase production costs", "B) To reduce the need for raw materials", "C) To create new waste", "D) To decrease product quality"],
+                answer: "B"
+            }
+        ]
+    };
+
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const scoreContainer = document.getElementById('score');
+    const messageContainer = document.getElementById('message');
+    const timerContainer = document.getElementById('timer');
+    const resetCooldownButton = document.getElementById('resetCooldown');
+    const leaderboardContainer = document.getElementById('leaderboard');
+    let score = 0;
+    let questionIndex = 0;
+    let answeringAllowed = true;
+    let quizLevel = 'easy';
+    let cooldownActive = false;
+    let timerInterval;
+
+    let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+    function displayQuestion() {
+        if (questionIndex >= quizData[quizLevel].length) {
+            showResults();
+            return;
+        }
+        const questionData = quizData[quizLevel][questionIndex];
+        const choices = questionData.choices.map(choice => `<li><label><input type="radio" name="question${questionIndex}" value="${choice[0]}"> ${choice}</label></li>`).join('');
+        quizContainer.innerHTML = `<div class="question">${questionData.question}</div><ul class="choices">${choices}</ul>`;
+        document.getElementById('submit').disabled = false; // Enable the submit button
+    }
+
+    function checkAnswer() {
+        if (!answeringAllowed) return;
+        const selectedOption = document.querySelector(`input[name="question${questionIndex}"]:checked`);
+        if (!selectedOption) {
+            messageContainer.textContent = "Please select an answer!";
+            return;
+        }
+        messageContainer.textContent = "";
+        const answer = selectedOption.value;
+        const correctAnswer = quizData[quizLevel][questionIndex].answer;
+        const resultElement = document.createElement('div');
+        if (answer === correctAnswer) {
+            score++;
+            resultElement.className = 'correct-answer';
+            resultElement.textContent = 'Correct!';
+        } else {
+            score--; // Deduct 1 point for wrong answer
+            resultElement.className = 'wrong-answer';
+            resultElement.textContent = `Wrong! The correct answer was ${correctAnswer}.`;
+        }
+        resultsContainer.appendChild(resultElement);
+        scoreContainer.innerHTML = `Score: ${score}`;
+
+        // Disable all radio buttons and the submit button
+        const radioButtons = document.querySelectorAll(`input[name="question${questionIndex}"]`);
+        radioButtons.forEach(radio => radio.disabled = true);
+        document.getElementById('submit').disabled = true;
+
+        answeringAllowed = false; // Prevents answering while waiting for the result to disappear
+        setTimeout(() => {
+            resultElement.style.opacity = 0; // Fade out the result
+            setTimeout(() => {
+                resultElement.remove(); // Remove the result element from DOM
+                questionIndex++;
+                answeringAllowed = true; // Allow answering the next question
+                displayQuestion();
+            }, 500); // Delay to match the transition time of opacity
+        }, 2000); // 2 seconds delay to show the result
+    }
+
+    function showResults() {
+        quizContainer.innerHTML = `<h2>Quiz completed!</h2><p>Your final score is ${score} out of ${quizData[quizLevel].length}</p>`;
+        document.getElementById('submit').style.display = 'none';
+        if (cooldownActive) {
+            startCooldownTimer();
+        } else {
+            start24hCooldown();
+        }
+        updateLeaderboard(score);
+        displayLeaderboard();
+    }
+
+    function resetQuiz() {
+        questionIndex = 0;
+        answeringAllowed = true;
+        resultsContainer.innerHTML = '';
+        scoreContainer.innerHTML = `Score: ${score}`;
+        document.getElementById('submit').style.display = 'block';
+        displayQuestion();
+    }
+
+    function startCooldownTimer() {
+        let cooldownTime = 30; // 30 seconds cooldown
+        timerContainer.style.display = 'block';
+        timerContainer.textContent = `Cooldown: ${cooldownTime}s`;
+        resetCooldownButton.disabled = true;
+        timerInterval = setInterval(() => {
+            cooldownTime--;
+            timerContainer.textContent = `Cooldown: ${cooldownTime}s`;
+            if (cooldownTime <= 0) {
+                clearInterval(timerInterval);
+                timerContainer.style.display = 'none';
+                resetCooldownButton.disabled = false;
+                cooldownActive = false;
+                resetQuiz();
+            }
+        }, 1000);
+    }
+
+    function start24hCooldown() {
+        let cooldownTime = 86400; // 24 hours in seconds
+        timerContainer.style.display = 'block';
+        timerContainer.textContent = `Cooldown: ${formatTime(cooldownTime)}`;
+        resetCooldownButton.style.display = 'block';
+        cooldownActive = true;
+        timerInterval = setInterval(() => {
+            cooldownTime--;
+            timerContainer.textContent = `Cooldown: ${formatTime(cooldownTime)}`;
+            if (cooldownTime <= 0) {
+                clearInterval(timerInterval);
+                timerContainer.style.display = 'none';
+                resetCooldownButton.style.display = 'none';
+                cooldownActive = false;
+                resetQuiz();
+            }
+        }, 1000);
+    }
+
+    function formatTime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        return `${h}h ${m}m ${s}s`;
+    }
+
+    function updateLeaderboard(score) {
+        const name = prompt("Enter your name:");
+        if (name) {
+            leaderboard.push({ name, score });
+            leaderboard.sort((a, b) => b.score - a.score); // Sort leaderboard by score in descending order
+            if (leaderboard.length > 10) {
+                leaderboard.pop(); // Keep only top 10 scores
+            }
+            localStorage.setItem('leaderboard', JSON.stringify(leaderboard)); // Save leaderboard to localStorage
+        }
+    }
+
+    function displayLeaderboard() {
+        leaderboardContainer.innerHTML = leaderboard.map(entry => `<li>${entry.name}: ${entry.score}</li>`).join('');
+    }
+
+    document.getElementById('submit').addEventListener('click', checkAnswer);
+
+    resetCooldownButton.addEventListener('click', () => {
+        if (score >= 3) {
+            score -= 3; // Subtract 3 points
+            scoreContainer.innerHTML = `Score: ${score}`;
+            cooldownActive = false;
+            resetCooldownButton.style.display = 'none';
+            clearInterval(timerInterval);
+            timerContainer.style.display = 'none';
+            resetQuiz();
+        } else {
+            messageContainer.textContent = "You need at least 3 points to use this option!";
+        }
+    });
+
+    displayQuestion();
+    displayLeaderboard();
+</script>
+</body>
+</html>

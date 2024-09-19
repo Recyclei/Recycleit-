@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Qe3e0w+4TdM14Y8tLKbfgzldP0qL8ouBHRf/eI4KGCZ4mX45JWdXTsxwGMy9J2sHLxwY2F/kG3tdSbP+wGijsA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Contact us-Recycle it!</title>
+    <link rel="icon" href="https://i.imgur.com/JQVkXNQ.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <style>
+   @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+   body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow-y: scroll; /* Allows vertical scrolling */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    align-items: center;
+    position: relative;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); /* Importing Roboto font */
+ nav {
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(20px); /* For better cross-browser support */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+    z-index: 999; /* Ensure the nav bar stays on top */
+    display: flex;
+    position: fixed;
+    top: 20px; /* This moves the nav down from the top */
+    width:95%;
+    border-radius: 50px; /* This adds curves to the navigation bar */
+}
+
+
+.logo {
+    padding: 1vh 1vw;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    width: 88vw;
+    padding: 0 0.7vw;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /* Updated font to Roboto */
+    font-size: 1.2rem; /* Font size for better readability */
+}
+
+/* Navigation Links Styling */
+.nav-links li a {
+    color: #131418; /* Black text color */
+    transition: color 0.3s ease; /* Smooth transition for color */
+    font-weight: 500; /* Adding some weight for a stronger appearance */
+    text-decoration: none; /* Removing underline */
+}
+
+/* Hover State */
+.nav-links li a:hover {
+    color: #1524ff; /* Deep indigo color */
+}
+
+
+.nav-links li {
+    position: relative;
+}
+
+/* Buttons Styling */
+.login-button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem; /* Increased font size */
+    background-color: transparent;
+    border: 1.5px solid #131418; /* Black border to match text color */
+    border-radius: 2em;
+    padding: 0.6rem 1rem; /* Increased padding for a more spacious look */
+    margin-left: 2vw;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    color: #f2f5f7;
+    background-color: #131418; /* Inverting the color on hover */
+    border: 1.5px solid #131418;
+    transition: all ease-in-out 350ms;
+}
+
+.join-button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem; /* Increased font size */
+    color: #f2f5f7;
+    background-color: #131418; /* Black background for contrast */
+    border: 1.5px solid #131418;
+    border-radius: 2em;
+    padding: 0.6rem 1rem; /* Increased padding */
+    cursor: pointer;
+}
+
+.join-button:hover {
+    color: #131418;
+    background-color: #f2f5f7; /* Invert colors on hover */
+    border: 1.5px solid #f2f5f7;
+    transition: all ease-in-out 350ms;
+}
+
+/* Hamburger icon styles for small screens */
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: #131418; /* Black color for consistency */
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-links {
+        font-size: 1.5rem; /* Larger font size for smaller screens */
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+    }
+
+    .nav-links {
+        position: fixed;
+        background: #f2f5f7; /* Light background for contrast */
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        top: 0;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+    }
+
+    li.fade {
+        opacity: 1;
+    }
+}
+
+/* Hamburger icon transformation on click */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    transition: all 0.7s ease;
+    width: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent; /* No background for dropdown button */
+  color: #fff;
+  border: none; /* Remove border */cursor: pointer;
+  border-radius: 25px; /* Curved corners for button */
+  cursor: pointer;
+  padding: 0; /* Remove padding /font-weight: normal; / Remove bold font */
+  display: flex;
+  align-items: center;
+  font-weight: bold; /* Added bold font for visibility */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: transparent; /* No hover background /border-color: transparent; / No hover border */
+    border-color: #666; /* Darker border on hover */
+}
+
+.arrow {
+  margin-left: 5px; /* Reduced margin between arrow and text */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    min-width: 180px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    flex-direction: column; /* Ensures vertical alignment */
+}
+
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+    .container {
+            width: 80%; 
+            margin: 90px auto; /* Adjust margin-top and margin-bottom for positioning */
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+</style>
+</head>
+<body>
+
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+        <!-- Left side: Image logo -->
+        <img src="Logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+
+      <!-- Right side: Transparent text -->
+   <span class="bouncing-text">
+    <span>R</span><span>e</span><span>c</span><span>y</span><span>c</span><span>l</span><span>e</span>
+    <span> </span><span>i</span><span>t</span>
+  </span>
+
+    </div>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="">Home</a></li>
+              <li><a href="Chat with AI.html">Chat with AI</a></li>
+          
+              <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">
+                    Recycling future
+                  <span class="arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                  <a href="Recycling Technology Innovations.html">Recycling Technology Innovations</a>
+                  <a href="Sustainable Waste Management Practices.html">Sustainable Waste Management Practices</a>
+                 <a href="AI in Recycling Systems.html">AI in Recycling Systems</a>
+              </li>
+         
+            <li class="dropdown">
+              <a href="javascript:void(0)" class="dropbtn">
+                About
+                <span class="arrow">&#9660;</span>
+              </a>
+              <div class="dropdown-content">
+              <a href="About us.html">About us</a>
+                <a href="Who are us.html">Who are us</a>
+                <a href="Our team.html">Our team</a>
+              </div>
+            </li>
+          </ul>
+          
+    </nav>
+
+</div> 
+<div class="container">
+    <h1>Contact Us</h1>
+    <form action="https://api.web3forms.com/submit" method="post">
+
+        <input type="hidden" name="access_key" value="200b1316-9896-4fd5-82f9-d55c276213b8">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script>
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links li");
+  
+  
+    hamburger.addEventListener('click', () => {
+      // Animate Links
+      navLinks.classList.toggle("open");
+      links.forEach(link => {
+        link.classList.toggle("fade");
+      });
+  
+      // Hamburger Animation
+      hamburger.classList.toggle("toggle");
+    });
+  </script>
